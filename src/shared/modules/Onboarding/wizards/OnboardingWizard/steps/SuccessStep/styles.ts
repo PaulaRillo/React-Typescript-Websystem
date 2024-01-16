@@ -1,0 +1,15 @@
+import { StylesProps } from 'shared/types/styles-props';
+
+export const container: StylesProps = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
+  height: '100%'
+};
+
+export const icon: StylesProps = {
+  width: 100,
+  height: 100
+};

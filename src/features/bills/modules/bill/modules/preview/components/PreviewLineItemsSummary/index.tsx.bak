@@ -1,0 +1,180 @@
+import { Box, Typography } from '@mui/material';
+import * as styles from './styles';
+import { tr } from 'shared/translate'
+import { IInvoice } from 'core/domain/invoice/IInvoice';
+import { useNumbers } from '../../../../../../../../shared/hooks/useNumbers';
+import { useCallback } from 'react';
+import { useBill } from '../../../../../../../../shared/hooks/useBill';
+
+type Props = {
+  invoice: IInvoice;
+};
+
+export const PreviewLineItemsSummary = ({ invoice }: Props) => {
+
+  const { displayTotal, displayPercent } = useNumbers();
+  const { getValueByCurrency } = useBill();
+  const currencyId = invoice?.currency?.id;
+  const currency = invoice?.currency?.symbol;
+
+  // This is the total before any other feeds or discounts are applied
+  const getSubtotal = useCallback( () => {
+    const value = getValueByCurrency(
+      currencyId,
+      invoice?.subtotal,
+      invoice?.subtotalInSystemCurrency,
+      invoice?.subtotalInForeignCurrency);
+    return `${currency} ${displayTotal(value)}`;
+  }, [currency, currencyId, getValueByCurrency, displayTotal, invoice?.subtotal, invoice?.subtotalInSystemCurrency, invoice?.subtotalInForeignCurrency]);
+
+  // This is the total discount to be applied
+  const getTotalDiscount = useCallback( () => {
+    const value = getValueByCurrency(
+      currencyId,
+      invoice?.totalDiscountAmount,
+      invoice?.totalDiscountAmountInSystemCurrency,
+      invoice?.totalDiscountAmountInForeignCurrency);
+    return `${currency} ${displayTotal(value)}`;
+  }, [currency, currencyId, getValueByCurrency, displayTotal, invoice?.totalDiscountAmount, invoice?.totalDiscountAmountInSystemCurrency, invoice?.totalDiscountAmountInForeignCurrency]);
+
+  // This is any other additional expenses like freight charges
+  const getAdditionalExpenses = useCallback( () => {
+    const value = getValueByCurrency(
+      currencyId,
+      invoice?.additionalExpenses,
+      invoice?.additionalExpensesInSystemCurrency,
+      invoice?.additionalExpensesInForeignCurrency);
+    return `${currency} ${displayTotal(value)}`;
+  }, [currency, currencyId, getValueByCurrency, displayTotal, invoice?.additionalExpenses, invoice?.additionalExpensesInSystemCurrency, invoice?.additionalExpensesInForeignCurrency]);
+
+  // This is the total down payment to be paid
+  const getTotalDownPayment = useCallback( () => {
+    const value = getValueByCurrency(
+      currencyId,
+      invoice?.totalDownPaymentAmount,
+      invoice?.totalDownPaymentAmountInSystemCurrency,
+      invoice?.totalDownPaymentAmountInForeignCurrency);
+    return `${currency} ${displayTotal(value)}`;
+  }, [currency, currencyId, getValueByCurrency, displayTotal, invoice?.totalDownPaymentAmount, invoice?.totalDownPaymentAmountInSystemCurrency, invoice?.totalDownPaymentAmountInForeignCurrency]);
+
+  // This is the total amount of tax to be paid
+  const getTotalTax = useCallback( () => {
+    const value = getValueByCurrency(
+      currencyId,
+      invoice?.totalTax,
+      invoice?.totalTaxInSystemCurrency,
+      invoice?.totalTaxInForeignCurrency);
+    return `${currency} ${displayTotal(value)}`;
+  }, [currency, currencyId, getValueByCurrency, displayTotal, invoice?.totalTax, invoice?.totalTaxInSystemCurrency, invoice?.totalTaxInForeignCurrency]);
+
+  // This is the invoice total
+  const getInvoiceTotal = useCallback( () => {
+    const value = getValueByCurrency(
+      currencyId,
+      invoice?.invoiceTotal,
+      invoice?.invoiceTotalInSystemCurrency,
+      invoice?.invoiceTotalInForeignCurrency);
+    return `${currency} ${displayTotal(value)}`;
+  }, [currency, currencyId, getValueByCurrency, displayTotal, invoice?.invoiceTotal, invoice?.invoiceTotalInSystemCurrency, invoice?.invoiceTotalInForeignCurrency]);
+
+  // This is the total amount paid to date
+  const getTotalPaidToDate = useCallback( () => {
+    const value = getValueByCurrency(
+      currencyId,
+      invoice?.paidToDateAmount,
+      invoice?.paidToDateAmountInSystemCurrency,
+      invoice?.paidToDateAmountInForeignCurrency);
+    return `${currency} ${displayTotal(value)}`;
+  }, [currency, currencyId, getValueByCurrency, displayTotal, invoice?.paidToDateAmount, invoice?.paidToDateAmountInSystemCurrency, invoice?.paidToDateAmountInForeignCurrency]);
+
+  // This is the total left to be paid
+  const getTotalBalanceDue = useCallback( () => {
+    const value = getValueByCurrency(
+      currencyId,
+      invoice?.balanceDue,
+      invoice?.balanceDueInSystemCurrency,
+      invoice?.balanceDueInForeignCurrency);
+    return `${currency} ${displayTotal(value)}`;
+  }, [currency, currencyId, getValueByCurrency, displayTotal, invoice?.balanceDue, invoice?.balanceDueInSystemCurrency, invoice?.balanceDueInForeignCurrency]);
+
+  return (
+    <Box sx={styles.container}>
+      <Box sx={styles.lineTitle}>
+        <Typography variant="body2" fontWeight={700}>
+          {tr('bills.bill.root.preview.subtotal')}
+        </Typography>
+        <Typography variant="body2" fontWeight={700}>
+          {tr('bills.bill.root.preview.discount_percent')}
+        </Typography>
+        <Typography variant="body2" fontWeight={700}>
+          {tr('bills.bill.root.preview.discount')}
+        </Typography>
+        <Typography variant="body2" fontWeight={700}>
+          {tr('bills.bill.root.preview.totalDownPayment')}
+        </Typography>
+        <Typography variant="body2" fontWeight={700}>
+          {tr('bills.bill.root.preview.freight')}
+        </Typography>
+        <Typography variant="body2" fontWeight={700}>
+          {tr('bills.bill.root.preview.totalTax')}
+        </Typography>
+        <Typography variant="body2" fontWeight={700}>
+          {tr('bills.bill.root.preview.totalPaymentDue')}
+        </Typography>
+        <Typography variant="body2" fontWeight={700}>
+          {tr('bills.bill.root.preview.appliedAmount')}
+        </Typography>
+        <Typography variant="h6" fontWeight={700}>
+          {tr('bills.bill.balanceDue')}
+        </Typography>
+      </Box>
+      <Box sx={styles.lineValue}>
+        <Box sx={styles.summaryValue}>
+          <Typography variant="body2" sx={{ pr: 2.5 }}>
+            {getSubtotal()}
+          </Typography>
+        </Box>
+        <Box sx={styles.summaryValue}>
+          <Typography variant="body2" sx={{ pr: 2.5 }}>
+            {displayPercent(invoice?.discountPercent)}
+          </Typography>
+        </Box>
+        <Box sx={styles.summaryValue}>
+          <Typography variant="body2" sx={{ pr: 2.5 }}>
+            {getTotalDiscount()}
+          </Typography>
+        </Box>
+        <Box sx={styles.summaryValue}>
+          <Typography variant="body2" sx={{ pr: 2.5 }}>
+            {getTotalDownPayment()}
+          </Typography>
+        </Box>
+        <Box sx={styles.summaryValue}>
+          <Typography variant="body2" sx={{ pr: 2.5 }}>
+            {getAdditionalExpenses()}
+          </Typography>
+        </Box>
+        <Box sx={styles.summaryValue}>
+          <Typography variant="body2" sx={{ pr: 2.5 }}>
+            {getTotalTax()}
+          </Typography>
+        </Box>
+        <Box sx={styles.summaryValue}>
+          <Typography variant="body2" sx={{ pr: 2.5 }}>
+            {getInvoiceTotal()}
+          </Typography>
+        </Box>
+        <Box sx={styles.summaryValue}>
+          <Typography variant="body2" sx={{ pr: 2.5 }}>
+            {getTotalPaidToDate()}
+          </Typography>
+        </Box>
+        <Box sx={styles.summaryValue}>
+          <Typography variant="h6" fontWeight={700} sx={{ pr: 2.5 }}>
+            {getTotalBalanceDue()}
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
+  );
+};

@@ -1,0 +1,24 @@
+export type PaymentTermType = {
+  id: string;
+  externalId: string;
+  paymentTermsGroupName: string;
+  paymentDueMonthStartFrom: string;
+  numberOfAdditionalMonths: string;
+  numberOfAdditionalDays: string;
+  maximumCreditLimit: string;
+  totalDiscountPercent: number;
+  latePaymentInterestRateCharge: string;
+  priceListId: string;
+  priceListExternalId: string;
+  commitmentLimit: string;
+  openIncomingPayment: string;
+  discountCode: string;
+  dunningCode: string;
+  dueDateBasedOn: string;
+  numberOfInstallments: string;
+  numberOfToleranceDays: string;
+  firstPullSyncAt: string;
+  lastPullSyncAt: string;
+  firstPushSyncAt: string;
+  lastPushSyncAt: string;
+};

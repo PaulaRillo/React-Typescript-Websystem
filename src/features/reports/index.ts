@@ -1,0 +1,1 @@
+export { ReportsRouter } from './routes';

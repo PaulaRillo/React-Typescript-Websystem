@@ -1,0 +1,1 @@
+export { AccessRouter } from './routes';

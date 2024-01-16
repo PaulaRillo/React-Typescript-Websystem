@@ -1,0 +1,1 @@
+export { PersonalRouter } from './routes';

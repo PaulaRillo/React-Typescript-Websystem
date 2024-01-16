@@ -1,0 +1,20 @@
+export type UserType = {
+  id: string;
+  accountId: string;
+  username: string;
+  email: string;
+  phoneNumber: string;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  genderId: number;
+  countryCode: string;
+  state: string;
+  city: string;
+  zipCode: string;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string;
+  updatedBy: string;
+  description: string;
+};

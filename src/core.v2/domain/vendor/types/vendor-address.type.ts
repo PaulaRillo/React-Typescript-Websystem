@@ -1,0 +1,21 @@
+export type VendorAddressType = {
+  id: string;
+  externalId: string;
+  vendorId: string;
+  vendorExternalId: string;
+  isTaasEnabled: boolean;
+  street: string;
+  block: string;
+  zipCode: string;
+  city: string;
+  country: string;
+  countryCode: string;
+  countryExternalCode: string;
+  addressType: string;
+  state: string;
+  lineNumber: string;
+  firstPullSyncAt: string;
+  lastPullSyncAt: string;
+  firstPushSyncAt: string;
+  lastPushSyncAt: string;
+};

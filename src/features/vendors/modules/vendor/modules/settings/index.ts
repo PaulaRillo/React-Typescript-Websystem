@@ -1,0 +1,1 @@
+export { VendorsSettingsRouter } from './routes';

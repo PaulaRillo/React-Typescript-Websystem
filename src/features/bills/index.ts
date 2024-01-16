@@ -1,0 +1,1 @@
+export { BillsRouter } from './routes';

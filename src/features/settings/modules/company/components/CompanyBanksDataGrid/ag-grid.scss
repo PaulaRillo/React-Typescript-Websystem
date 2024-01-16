@@ -1,0 +1,43 @@
+// ag-grid.scss defines structural styles and should be imported first
+@import '../../../../../../../node_modules/ag-grid-community/src/styles/ag-grid';
+@import '../../../../../../../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin';
+
+.ag-theme-hco {
+  @include ag-theme-alpine(
+    (
+      foreground-color: #173354de,
+      secondary-foreground-color: #173354de,
+      data-color: #173354de,
+      odd-row-background-color: #f5f5f5,
+      row-border-color: #e0e0e0,
+      row-hover-color: rgba(21, 101, 192, 0.08),
+      checkbox-checked-color: #29b6f6,
+      range-selection-border-color: transparent,
+      range-selection-background-color: #03305633,
+      header-height: 48px,
+      header-foreground-color: #173354de,
+      header-background-color: #fff,
+      font-family: 'Ubuntu',
+      borders: true,
+      border-color: #e0e0e0
+    )
+  );
+
+  .ag-root-wrapper {
+    border-radius: 8px;
+  }
+
+  .data-grid-cell {
+    display: flex;
+    align-items: center;
+  }
+}
+
+/*
+  * Full list of theme parameters for ag-grid sass files:
+  * > https://www.ag-grid.com/javascript-data-grid/themes-customising/#full-list-of-theme-parameters
+  *
+  * Examples:
+  * > https://github.com/ag-grid/ag-grid-customise-theme/blob/master/src/vanilla-css-variables/styles/styles.scss
+  * > https://github.com/ag-grid/ag-grid-customise-theme/tree/master/src
+*/

@@ -1,0 +1,7 @@
+export type ViewType =
+  | 'SIGN_IN'
+  | 'SMS_MFA'
+  | 'CONFIRM_SIGN_UP'
+  | 'NEW_PASSWORD_REQUIRED'
+  | 'RESET_PASSWORD'
+  | 'RESET_PASSWORD_CONFIRMATION';

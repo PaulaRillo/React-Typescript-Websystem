@@ -1,0 +1,1 @@
+export { IntegrationsRouter } from './routes';

@@ -1,0 +1,51 @@
+import { TenantSettingsType } from 'core.v2/domain/@shared/types/tenant-settings.type';
+import { TenantSettingsMapperInterface } from './tenant-settings-mapper.interface';
+
+export class TenantSettingsMapper implements TenantSettingsMapperInterface {
+  toDomain(settingsDTO: any): TenantSettingsType {
+    return {
+      id: settingsDTO.id,
+      externalId: settingsDTO.external_id,
+      companyName: settingsDTO.company_name,
+      address: settingsDTO.address,
+      countryCode: settingsDTO.country_code,
+      countryExternalCode: settingsDTO.country_external_code,
+      header: settingsDTO.header,
+      primaryPhoneNumber1: settingsDTO.primary_phone_number1,
+      primaryPhoneNumber2: settingsDTO.primary_phone_number2,
+      primaryEmail: settingsDTO.primary_email,
+      localCurrencyId: settingsDTO.local_currency_id,
+      localCurrencyExternalId: settingsDTO.local_currency_external_id,
+      systemCurrencyId: settingsDTO.system_currency_id,
+      systemCurrencyExternalId: settingsDTO.system_currency_external_id,
+      openBalanceWithMinusSign: settingsDTO.open_balance_with_minus_sign,
+      totalsAccuracyDigits: settingsDTO.totals_accuracy_digits,
+      quantitiesAccuracyDigits: settingsDTO.quantities_accuracy_digits,
+      pricesAccuracyDigits: settingsDTO.prices_accuracy_digits,
+      ratesAccuracyDigits: settingsDTO.rates_accuracy_digits,
+      percentagesAccuracyDigits: settingsDTO.percentages_accuracy_digits,
+      measuringUnitsAccuracyDigits: settingsDTO.measuring_units_accuracy_digits,
+      queryAccuracyDigits: settingsDTO.query_accuracy_digits,
+      decimalSeparator: settingsDTO.decimal_separator,
+      thousandsSeparator: settingsDTO.thousands_separator,
+      displayCurrencyOnTheRight: settingsDTO.display_currency_on_the_right,
+      roundingMethod: settingsDTO.rounding_method,
+      state: settingsDTO.state,
+      aliasName: settingsDTO.alias_name,
+      addressType: settingsDTO.address_type,
+      streetNumber: settingsDTO.street_number,
+      dateOfIncorporation: settingsDTO.date_of_incorporation,
+      globalLocationNumber: settingsDTO.global_location_number,
+      createdAt: settingsDTO.created_at,
+      updatedAt: settingsDTO.updated_at,
+      createdBy: settingsDTO.created_by,
+      updatedBy: settingsDTO.updated_by,
+      firstPullSyncAt: settingsDTO.first_pull_sync_at,
+      lastPullSyncAt: settingsDTO.last_pull_sync_at,
+      firstPushSyncAt: settingsDTO.first_push_sync_at,
+      lastPushSyncAt: settingsDTO.last_push_sync_at,
+      localCurrency: settingsDTO.local_currency,
+      systemCurrency: settingsDTO.system_currency,
+    };
+  }
+}

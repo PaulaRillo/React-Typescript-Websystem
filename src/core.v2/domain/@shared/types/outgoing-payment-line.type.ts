@@ -1,0 +1,23 @@
+export type OutgoingPaymentLineType = {
+  id: string;
+  vendorOutgoingPaymentId: string;
+  vendorOutgoingPaymentExternalId: string;
+  documentId: string;
+  documentType: number;
+  apInvoiceExternalId: string;
+  totalAmountPaidToInvoice: number;
+  totalAmountPaidToInvoiceInForeignCurrency: number;
+  totalAmountPaidToInvoiceInSystemCurrency: number;
+  exchangeRate: number;
+  discountPercent: number;
+  totalAmountPaid: number;
+  installmentId: string;
+  installmentExternalId: string;
+  withholdingTaxApplied: number;
+  withholdingTaxAppliedInForeignCurrency: number;
+  withholdingTaxAppliedInSystemCurrency: number;
+  totalDiscount: number;
+  totalDiscountInForeignCurrency: number;
+  totalDiscountInSystemCurrency: number;
+  createdAt: string;
+};
